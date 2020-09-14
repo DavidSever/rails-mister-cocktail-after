@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <h2>Dodaj svoj koktejl</h2>
+      <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :name, label: "Ime koktejla" %>
+        <button type="submit" class="btn btn-primary mb-2"><%= f.button :submit,"Dodaj koktejl"%></button>
+        <%#= f.button :submit, label: "Dodaj koktejl", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
