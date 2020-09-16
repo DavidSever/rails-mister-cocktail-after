@@ -12,7 +12,7 @@
   <div class="row justify-content-space-between my-2">
       <% @cocktail.each do |cocktail| %>
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @article.photo.key, crop: :fill %>');">
+          <div class="card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo.key %>');">
             <div class="card-description">
               <h2> <%= cocktail.name %> </h2>
             </div>

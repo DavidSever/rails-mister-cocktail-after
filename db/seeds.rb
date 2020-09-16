@@ -19,7 +19,3 @@ drink["drinks"].each do |ingredient|
 
 end
 
-Cocktail.create(name: "Pivo")
-Cocktail.create(name: "Vino")
-Cocktail.create(name: "Margarite")
-Cocktail.create(name: "Bloody Merry")
