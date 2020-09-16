@@ -1,21 +1,22 @@
 .card {
-  height: 175px;
+  height: 200px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;
   color: white;
   position: relative;
   margin: 15px 0;
+  border-radius: 4px;
 }
 
 .card-description {
   position: absolute;
-  bottom: 10px;
-  left: 20px;
+  bottom: 0px;
+  left: 10px;
 }
 
 .card-description h2 {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .card-link {
