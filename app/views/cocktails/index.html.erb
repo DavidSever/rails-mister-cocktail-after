@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Najboljši koktejl recepti na enem mestu!</h1>
     <p>Najdi najljubši koktejl svojega prijatelja in objavi svojega!</p>
-    <%= link_to "Dodaj svoj koktejl", new_cocktail_path, class: 'btn btn-primary' %>
+    <%= link_to "Dodaj svoj koktejl", new_cocktail_path, class: 'btn btn-primary btn btn-dodaj-index' %>
   </div>
 </div>
 <div class="container">
@@ -11,8 +11,8 @@
   </div>
   <div class="row justify-content-space-between my-2">
       <% @cocktail.each do |cocktail| %>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/250x175/?cocktail');">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/250x175/?cocktail');">
             <div class="card-description">
               <h2> <%= cocktail.name %> </h2>
             </div>

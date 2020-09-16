@@ -5,21 +5,21 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-12 col-md-6 col-lg-5 recept shadow">
       <h3>Recept</h3>
       <table class="table table-bordered">
         <tbody>
           <thead>
             <th>Sestavine</th>
             <th>Količina</th>
-            <th>Kako dodati</th>
+            <th>Izbriši</th>
           </thead>
           <% @cocktail.doses.each do |dose| %>
             <tr>
               <td><%= dose.ingredient.name %></td>
               <td><%= dose.description %></td>
               <td>
-                <%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <%= link_to dose_path(dose), method: :delete, data: { confirm: "Res želite izbrisati sestavino #{dose.ingredient.name} iz koktejla?" } do %>
                   <i class="fa fa-trash destroy_dose"></i>
                 <% end %>
               </td>
@@ -27,10 +27,14 @@
           <% end %>
         </tbody>
       </table>
-      <%= link_to "Nazaj na vse koktejle", root_path %>
+      <i class="fas fa-arrow-left" style="color: #167FFB"></i><%= link_to " Nazaj na vse koktejle", root_path %>
+      <div class="col-sm-12 merica">
+      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+    </div>
     </div>
     <div class="col-sm-12 col-md-6">
-      <div class="picture-show-cocktail" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/600x400/?cocktail');">
+      <div class="picture-show-cocktail" style="background-image: url('https://source.unsplash.com/600x400/?cocktail');">
     </div>
   </div>
+
 </div>
