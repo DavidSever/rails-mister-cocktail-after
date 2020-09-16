@@ -5,7 +5,7 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-sm-12 col-md-6 col-lg-5 recept shadow">
+    <div class="col-sm-12 col-md-12 col-lg-5 recept shadow">
       <h3>Recept</h3>
       <table class="table table-bordered">
         <tbody>
@@ -32,8 +32,9 @@
       <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
     </div>
     </div>
-    <div class="col-sm-12 col-md-6">
-      <div class="picture-show-cocktail" style="background-image: url('https://source.unsplash.com/600x400/?cocktail');">
+    <div class="col-sm-12 col-md-12 col-lg-6">
+          <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+<!--       <div class="picture-show-cocktail" style="background-image: url('https://source.unsplash.com/600x400/?cocktail');"> -->
     </div>
   </div>
 
