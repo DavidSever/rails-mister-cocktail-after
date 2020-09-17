@@ -1,5 +1,5 @@
 class AddCocktailIdToDoses < ActiveRecord::Migration[6.0]
   def change
-    add_column :doses, :cocktail_id, :integer
+    add_reference :doses, :cocktail, null: false, foreign_key: true
   end
 end
