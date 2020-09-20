@@ -11,3 +11,22 @@ h1, h2 {
   word-spacing: 5px;
   letter-spacing: 1px;
 }
+
+.input-najdi {
+  border-radius: 20px;
+  width: 520px;
+}
+
+.input-bar {
+  position: relative;
+}
+
+.search-button {
+  position: absolute;
+  left: 70%;
+  margin: 4px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
