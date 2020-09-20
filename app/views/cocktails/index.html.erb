@@ -1,6 +1,20 @@
 <div class="banner d-flex align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url( '<%= image_path 'bar.jpg' %>' );">
   <div class="container">
     <h1>Najboljši koktejl recepti na enem mestu!</h1>
+    <div class="d-flex justify-content-center input-bar my-3">
+    <div>
+    <%= form_tag cocktails_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control input-najdi",
+      placeholder: "Najdi koktejl"
+      %>
+      </div>
+      <div>
+    <%= submit_tag "🍹", class: "btn btn-primary search-button"%>
+    <% end %>
+    </div>
+    </div>
     <p>Najdi najljubši koktejl svojega prijatelja in objavi svojega!</p>
     <%= link_to "Dodaj svoj koktejl", new_cocktail_path, class: 'btn btn-primary btn btn-dodaj-index' %>
   </div>
@@ -12,12 +26,21 @@
   <div class="row justify-content-space-between my-2">
       <% @cocktail.each do |cocktail| %>
         <div class="col-12 col-md-6 col-lg-4">
+          <% if cocktail.photo.present? %>
           <div class="card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path cocktail.photo.key %>');">
             <div class="card-description">
               <h2> <%= cocktail.name %> </h2>
             </div>
             <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
           </div>
+          <% else %>
+            <div class="card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/300x300/?<%=@cocktail.name%>');">
+            <div class="card-description">
+              <h2> <%= cocktail.name %> </h2>
+            </div>
+            <%= link_to "", cocktail_path(cocktail), class: 'card-link' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
   </div>

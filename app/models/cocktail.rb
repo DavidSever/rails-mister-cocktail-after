@@ -4,4 +4,14 @@ class Cocktail < ApplicationRecord
   has_many :reviews, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   has_one_attached :photo
+  validates :photo, presence: true
+
+
+
+   include PgSearch::Model
+    pg_search_scope :search_by_name,
+    against: [ :name ],
+    using: {
+    tsearch: { prefix: true }
+    }
 end
