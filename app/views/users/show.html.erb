@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row mt-5">
+
+    <div class="col-5">
+      <h2>Profil</h2>
+
+      <div class="card-container d-flex">
+       <div>
+          <%= cl_image_tag @user.avatar_url,:class=>"avatar-profile", crop: :fill %>
+          <div class="mt-3 ">
+            <h5><%= @user.username %></h5>
+            <p><%= @user.bio %></p>
+            <% if current_user == @user %>
+            <div class="d-flex justify-content-space-around">
+            <div class="btn-user">
+              <%= link_to 'Uredi profil', edit_user_path %>
+            </div>
+            <div class="btn-user ml-3">
+              <%= link_to 'Dodaj cocktail', new_cocktail_path %>
+            </div>
+          </div>
+
+            <% end %>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="col-7">
+      <div>
+        <h2> Moji koktejli</h2>
+        <p> </p>
+      </div>
+      <div>
+        <% @cocktails.each do |cocktail| %>
+          <%= link_to cocktail_path(cocktail), style: "color: black; text-decoration: none" do %>
+
+            <div class="" style="width: 300px;">
+
+              <div class="">
+                <h5 class=""><%= cocktail.name %></h5>
+
+                <% if current_user == @user %>
+                  <div class="d-flex">
+                  <div>
+
+                     <a href="#" class="btn-user">Uredi Koktejl</a>
+                  </div>
+
+                  <div class="btn-user">
+                    <%= link_to 'Izbriši Koktejl', method: :delete, data: { confirm: "Ste prepričani, da želite izbirsati ta koktejl?"} %>
+                  </div>
+
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

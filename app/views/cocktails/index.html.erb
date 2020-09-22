@@ -1,8 +1,9 @@
 <div class="banner d-flex align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url( '<%= image_path 'bar.jpg' %>' );">
   <div class="container">
     <h1>Najboljši koktejl recepti na enem mestu!</h1>
-    <div class="d-flex justify-content-center input-bar my-3">
-    <div>
+    <p>Najdi najljubši koktejl svojega prijatelja in objavi svojega!</p>
+    <div class=" d-flex justify-content-center input-bar my-3">
+    <div class="col-sm-8 col-lg-6">
     <%= form_tag cocktails_path, method: :get do %>
       <%= text_field_tag :query,
       params[:query],
@@ -10,12 +11,9 @@
       placeholder: "Najdi koktejl"
       %>
       </div>
-      <div>
-    <%= submit_tag "🍹", class: "btn btn-primary search-button"%>
     <% end %>
+
     </div>
-    </div>
-    <p>Najdi najljubši koktejl svojega prijatelja in objavi svojega!</p>
     <%= link_to "Dodaj svoj koktejl", new_cocktail_path, class: 'btn btn-primary btn btn-dodaj-index' %>
   </div>
 </div>
@@ -23,7 +21,7 @@
   <div class="row justify-content-center mt-5">
     <h1>Vsi koktejli</h1>
   </div>
-  <div class="row justify-content-space-between my-2">
+  <div class="row justify-content-space-between mt-2 mb-5">
       <% @cocktail.each do |cocktail| %>
         <div class="col-12 col-md-6 col-lg-4">
           <% if cocktail.photo.present? %>
@@ -43,5 +41,9 @@
           <% end %>
         </div>
       <% end %>
+  </div>
+  <hr>
+  <div style="text-align: center;">
+        <p>Minister za zdravje opozarja: Pretirano pitje alkohola lahko škoduje zdravju! 🍻</p>
   </div>
 </div>

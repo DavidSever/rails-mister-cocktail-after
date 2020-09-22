@@ -1,3 +1,4 @@
+<%#= render 'shared/navbar' %>
 <div class="container main">
 
   <div class="row d-flex justify-content-center mt-5">
@@ -12,25 +13,31 @@
           <thead>
             <th>Sestavine</th>
             <th>Količina</th>
+            <% if current_user == @user %>
             <th>Izbriši</th>
+            <% end %>
           </thead>
           <% @cocktail.doses.each do |dose| %>
             <tr>
               <td><%= dose.ingredient.name %></td>
               <td><%= dose.description %></td>
+              <% if current_user == @user %>
               <td>
                 <%= link_to dose_path(dose), method: :delete, data: { confirm: "Res želite izbrisati sestavino #{dose.ingredient.name} iz koktejla?" } do %>
                   <i class="fa fa-trash destroy_dose"></i>
                 <% end %>
               </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
       </table>
       <i class="fas fa-arrow-left" style="color: #167FFB"></i><%= link_to " Nazaj na vse koktejle", root_path %>
+      <% if current_user == @user %>
       <div class="col-sm-12 merica">
       <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
-    </div>
+      </div>
+      <% end %>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6">
         <% if @cocktail.photo.present? %>
@@ -38,12 +45,33 @@
         <% else %>
           <img class="picture-show-cocktail" src="https://source.unsplash.com/300x300/?<%=@cocktail.name%>" alt="Card image cap">
         <% end %>
-<!--       <div class="picture-show-cocktail" style="background-image: url('https://source.unsplash.com/600x400/?cocktail');"> -->
+    </div>
+  </div>
+<!-- POSODOBI KOKTEJL -->
+        <% if current_user == @user %>
+        <div class="w-70 justify-content-center mb-5 komentarji shadow">
+           <h5>Posodobi</h5>
+              <%= simple_form_for @cocktail do |f| %>
+              <%= f.input :name, label: "Ime koktejla" %>
+              <%= f.input :description, label: "Dodaj opis" %>
+              <%= f.input :photo, as: :file, label: "Posodobi sliko:", required: true %>
+               <button type="submit" class="btn btn-primary btn-dodaj-koktejl"><%= f.button :submit,"Posodobi koktejl"%></button>
+                <% end %>
+        </div>
+        <% end %>
+ <!--  description section -->
+  <div class="w-70 justify-content-center mb-5 komentarji shadow">
+    <h3>Opis</h3>
+    <hr>
+    <div class="opis">
+      <%= @cocktail.description %>
     </div>
   </div>
 
+<!--   KOMENTARJI -->
   <div class="w-70 justify-content-center mb-5 komentarji shadow">
     <h3 class="mb-3">Komentarji</h3>
+    <hr>
     <% if @cocktail.reviews.empty? %>
       <h5>Bodi prvi in komentiraj ta koktejl!</h5>
     <% else %>
@@ -67,7 +95,10 @@
         <%= render "reviews/new", cocktail: @cocktail, review: @review %>
       </div>
     </div>
-
+    <hr class="w-80">
+  <div style="text-align: center;">
+        <p>Minister za zdravje opozarja: Pretirano pitje alkohola lahko škoduje zdravju! 🍻</p>
+  </div>
 </div>
 
 
