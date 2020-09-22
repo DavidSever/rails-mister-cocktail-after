@@ -1,0 +1,11 @@
+<div class="container pt-5">
+  <h2>Uredi svoj profil</h2>
+    <%= simple_form_for [@user] do |f| %>
+    <%= f.input :username %>
+    <%= f.input :bio %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit 'Posodobi', class: 'btn btn-primary' %>
+    <% end %>
+    <hr>
+    <%= link_to "Nazaj", user_path, class: "btn btn-primary"%>
+</div>
