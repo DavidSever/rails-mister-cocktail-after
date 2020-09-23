@@ -48,12 +48,11 @@
                 <% if current_user == @user %>
                   <div class="d-flex">
                   <div>
-
-                     <a href="#" class="btn-user">Uredi Koktejl</a>
+                    <%= link_to "Uredi koktejl", cocktail_path(cocktail), class: 'btn-user'  %>
                   </div>
 
                   <div class="btn-user">
-                    <%= link_to 'Izbriši Koktejl', method: :delete, data: { confirm: "Ste prepričani, da želite izbirsati ta koktejl?"} %>
+                    <%= link_to 'Izbriši Koktejl', cocktail_path(cocktail), method: :delete, data: { confirm: "Ste prepričani, da želite izbirsati ta koktejl?"} %>
                   </div>
 
                   </div>

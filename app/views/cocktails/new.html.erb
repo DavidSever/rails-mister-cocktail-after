@@ -4,7 +4,7 @@
       <h2>Dodaj koktejl</h2>
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name, label: "Ime koktejla" %>
-        <%= f.input :description, label: "Dodaj opis" %>
+        <%= f.input :description, label: "Navodila za pripravo" %>
         <%= f.input :photo, as: :file, label: "Slika:", required: true %>
         <button type="submit" class="btn btn-primary btn-dodaj-koktejl"><%= f.button :submit,"Dodaj koktejl"%></button>
         <%#= f.button :submit, label: "Dodaj koktejl", class: "btn btn-primary" %>

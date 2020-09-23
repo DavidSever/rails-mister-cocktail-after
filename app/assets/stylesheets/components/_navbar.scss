@@ -11,3 +11,12 @@
   width: 40px;
 }
 
+.navbar-home {
+  position: absolute;
+  background: transparent;
+  width: 100%;
+  box-shadow: none;
+  .nav-link {
+    color: white !important;
+  }
+}
