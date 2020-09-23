@@ -1,69 +1,63 @@
 <div class="container">
-  <div class="row mt-5">
+  <div class="row my-3">
 
-    <div class="col-5">
-      <h2>Profil</h2>
-
-      <div class="card-container d-flex">
-       <div>
-          <%= cl_image_tag @user.avatar_url,:class=>"avatar-profile", crop: :fill %>
+    <!--   User section -->
+    <div class="col-sm-12 col-lg-4 card-container d-flex">
+        <div class="user-card user-left">
+          <%= cl_image_tag @user.avatar_url,:class=>"avatar-profile", crop: :fill%>
           <div class="mt-3 ">
             <h5><%= @user.username %></h5>
+            <hr class="w-75">
             <p><%= @user.bio %></p>
             <% if current_user == @user %>
-            <div class="d-flex justify-content-space-around">
-            <div class="btn-user">
-              <%= link_to 'Uredi profil', edit_user_path %>
-            </div>
-            <div class="btn-user ml-3">
-              <%= link_to 'Dodaj cocktail', new_cocktail_path %>
-            </div>
-          </div>
-
+              <div class="d-flex justify-content-center">
+                <div class="btn btn-user">
+                  <%= link_to 'Uredi profil', edit_user_path %>
+                </div>
+                <div class="btn btn-user ml-1">
+                  <%= link_to 'Dodaj cocktail', new_cocktail_path %>
+                </div>
+              </div>
             <% end %>
-
           </div>
         </div>
-
-      </div>
-
-
     </div>
 
+     <!--  Koktejli section -->
 
-    <div class="col-7">
+    <div class="col-sm-12 col-lg-8 user-card">
       <div>
-        <h2> Moji koktejli</h2>
-        <p> </p>
+        <h1> Moji koktejli</h1>
       </div>
-      <div>
         <% @cocktails.each do |cocktail| %>
-          <%= link_to cocktail_path(cocktail), style: "color: black; text-decoration: none" do %>
 
-            <div class="" style="width: 300px;">
-
-              <div class="">
-                <h5 class=""><%= cocktail.name %></h5>
-
-                <% if current_user == @user %>
-                  <div class="d-flex">
-                  <div>
-
-                     <a href="#" class="btn-user">Uredi Koktejl</a>
-                  </div>
-
-                  <div class="btn-user">
-                    <%= link_to 'Izbriši Koktejl', method: :delete, data: { confirm: "Ste prepričani, da želite izbirsati ta koktejl?"} %>
-                  </div>
-
-                  </div>
-                <% end %>
+            <div class="card-product d-flex">
+              <div class="card-img" style="background-image: url('<%= cl_image_path cocktail.photo.key %>');">
               </div>
+              <%= link_to cocktail_path(cocktail) do %>
+              <div class="card-product-infos">
+                <div>
+                  <h2><%= cocktail.name %></h2>
+                  <p><%= cocktail.description %></p>
+                </div>
+              </div>
+              <% if current_user == @user %>
+                <div>
+                  <div class="btn btn-user">
+                    <%= link_to "Uredi", cocktail_path(cocktail) %>
+                  </div>
+                  <div class="btn btn-user ml-1">
+                    <%= link_to 'Izbriši', cocktail_path(cocktail), method: :delete, data: { confirm: "Ste prepričani, da želite izbirsati ta koktejl?"} %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         <% end %>
       </div>
-
-    </div>
+  </div>
+  <hr>
+  <div style="text-align: center;">
+        <p>Minister za zdravje opozarja: Pretirano pitje alkohola lahko škoduje zdravju! 🍻</p>
   </div>
 </div>
