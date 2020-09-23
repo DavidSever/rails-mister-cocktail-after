@@ -1,6 +1,121 @@
 <%#= render 'shared/navbar' %>
 <div class="container main">
 
+<div class="row my-3">
+
+    <!--   User section -->
+    <div class="col-sm-12 col-lg-4 card-container d-flex">
+        <div class="user-left-cocktail">
+          <h3 style="text-align: center;">Recept</h3>
+                <table class="table table-bordered">
+        <tbody>
+          <thead>
+            <th>Sestavine</th>
+            <th>Količina</th>
+            <% if current_user == @user %>
+            <th>Izbriši</th>
+            <% end %>
+          </thead>
+          <% @cocktail.doses.each do |dose| %>
+            <tr>
+              <td><%= dose.ingredient.name %></td>
+              <td><%= dose.description %></td>
+              <% if current_user == @user %>
+              <td>
+                <%= link_to dose_path(dose), method: :delete, data: { confirm: "Res želite izbrisati sestavino #{dose.ingredient.name} iz koktejla?" } do %>
+                  <i class="fa fa-trash destroy_dose"></i>
+                <% end %>
+              </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <i class="fas fa-arrow-left" style="color: #167FFB"></i><%= link_to " Nazaj na vse koktejle", root_path %>
+      <% if current_user == @user %>
+      <div class="col-sm-12 merica">
+      <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+      </div>
+      <% end %>
+        </div>
+    </div>
+
+     <!--  Koktejli section -->
+
+    <div class="col-sm-12 col-lg-8 user-card-cocktail">
+      <div>
+        <h1><%= @cocktail.name %></h1>
+      </div>
+        <% if @cocktail.photo.present? %>
+          <%= cl_image_tag @cocktail.photo.key, :class=>"picture-show-cocktail" %>
+        <% else %>
+          <img class="picture-show-cocktail" src="https://source.unsplash.com/300x300/?<%=@cocktail.name%>" alt="Card image cap">
+        <% end %>
+
+              <!-- OPIS -->
+
+            <div class="card-product-cocktail">
+              <div class="card-product-infos koktejl-show-item">
+                <h3>Navodila za pripravo:</h3>
+                <div class="opis">
+                  <%= @cocktail.description %>
+                </div>
+              </div>
+            </div>
+
+            <!-- POSODIBI -->
+
+            <% if current_user == @user %>
+            <div class="card-product-cocktail">
+              <div class="card-product-infos">
+                    <div class="justify-content-center koktejl-show-item">
+                      <h5>Posodobi</h5>
+                        <%= simple_form_for @cocktail do |f| %>
+                        <%= f.input :name, label: "Ime koktejla" %>
+                        <%= f.input :description, label: "Dodaj opis" %>
+                        <%= f.input :photo, as: :file, label: "Posodobi sliko:", required: true %>
+                         <button type="submit" class="btn btn-primary btn-dodaj-koktejl"><%= f.button :submit,"Posodobi koktejl"%></button>
+                          <% end %>
+                    </div>
+              </div>
+            </div>
+            <% end %>
+
+      <!-- komentarji -->
+
+          <div class="card-product-komentarji">
+            <div class="card-product-infos">
+              <div class="koktejl-show-item">
+                <h3 class="mb-3">Komentarji</h3>
+                <% if @cocktail.reviews.empty? %>
+                  <h5>Bodi prvi in komentiraj ta koktejl!</h5>
+                <% else %>
+                  <ul class="list-group">
+                    <% @cocktail.reviews.each do |review| %>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge badge-primary badge-pill">
+                        <% counter = 0 %>
+                        <% 5.times do %>
+                          <i class="fa <%= review.rating > counter ? 'fa-star' : 'fa-star-o' %>"></i>
+                          <% counter += 1 %>
+                        <% end %>
+                      </span>
+                      <%= review.content %>
+                      </li>
+                  <% end %>
+                  </ul>
+                <% end %>
+                <div class="mt-3">
+                  <%= render "reviews/new", cocktail: @cocktail, review: @review %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+  </div>
+
+  <!-- stara stran  -->
+<!--
   <div class="row d-flex justify-content-center mt-5">
       <h1><%= @cocktail.name %></h1>
   </div>
@@ -46,9 +161,9 @@
           <img class="picture-show-cocktail" src="https://source.unsplash.com/300x300/?<%=@cocktail.name%>" alt="Card image cap">
         <% end %>
     </div>
-  </div>
+  </div> -->
 <!-- POSODOBI KOKTEJL -->
-        <% if current_user == @user %>
+       <!--  <% if current_user == @user %>
         <div class="w-70 justify-content-center mb-5 komentarji shadow">
            <h5>Posodobi</h5>
               <%= simple_form_for @cocktail do |f| %>
@@ -58,18 +173,18 @@
                <button type="submit" class="btn btn-primary btn-dodaj-koktejl"><%= f.button :submit,"Posodobi koktejl"%></button>
                 <% end %>
         </div>
-        <% end %>
+        <% end %> -->
  <!--  description section -->
-  <div class="w-70 justify-content-center mb-5 komentarji shadow">
+  <!-- <div class="w-70 justify-content-center mb-5 komentarji shadow">
     <h3>Navodila za pripravo:</h3>
     <hr>
     <div class="opis">
       <%= @cocktail.description %>
     </div>
-  </div>
+  </div> -->
 
 <!--   KOMENTARJI -->
-  <div class="w-70 justify-content-center mb-5 komentarji shadow">
+<!--   <div class="w-70 justify-content-center mb-5 komentarji shadow">
     <h3 class="mb-3">Komentarji</h3>
     <hr>
     <% if @cocktail.reviews.empty? %>
@@ -94,8 +209,10 @@
       <div class="mt-3">
         <%= render "reviews/new", cocktail: @cocktail, review: @review %>
       </div>
-    </div>
-    <hr class="w-80">
+    </div> -->
+
+</div>
+<hr>
   <div style="text-align: center;">
         <p>Minister za zdravje opozarja: Pretirano pitje alkohola lahko škoduje zdravju! 🍻</p>
   </div>

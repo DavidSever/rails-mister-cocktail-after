@@ -4,7 +4,7 @@
       <%= f.label :description, required: true, label: "Količina"  %>
       <%= f.text_field :description, label: "Sestavina", required: true %>
       <%= f.input :ingredient_id,required: true, label: "Sestavina", collection: Ingredient.all %>
-       <button type="submit" id="btn-dodaj" class="btn btn-primary"><%= f.button :submit,"Dodaj sestavino"%></button>
+       <button type="submit" id="btn-dodaj" class="btn btn-primary btn-dodaj-koktejl" style="margin-left: 25%"><%= f.button :submit,"Dodaj sestavino"%></button>
       <%#= f.submit "Dodaj sestavino", class: 'btn btn-primary'%>
     <% end %>
 </div>

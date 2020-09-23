@@ -41,6 +41,14 @@
   border-bottom: 2px solid #E8E8E8 ;
 }
 
+.user-card-cocktail {
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 40px 0px;
+  border-bottom: 2px solid #E8E8E8 ;
+}
+
 .user-left p {
   opacity: .7;
 }
@@ -48,6 +56,17 @@
 .user-left {
   max-height: 400px;
   width: 100%;
+}
+
+.user-left-cocktail {
+  width: 100%;
+  margin: 0 0 auto 0;
+  background-color: white;
+  border-radius: 10px;
+  padding: 40px 20px;
+  border-bottom: 2px solid #E8E8E8 ;
+  position: sticky;
+  top: 20px;
 }
 
  // cards display cocktails in user page
@@ -64,6 +83,17 @@
   border-radius: 10px;
 }
 
+.card-product-cocktail {
+  margin: 20px 20px;
+  border-bottom: 2px solid #E8E8E8 ;
+  border-radius: 10px;
+ }
+
+
+.card-product-komentarji {
+  margin: 20px 20px;
+  border-radius: 10px;
+}
 // .card-product img {
 //   height: 100%;
 //   width: 120px;
@@ -95,6 +125,11 @@
   width: 150px;
   background-size: cover !important;
   background-position: center;
+}
+
+.koktejl-show-item {
+    margin: 0 24px;
+    padding: 40px;
 }
 
 
