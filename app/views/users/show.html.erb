@@ -29,7 +29,7 @@
       <div>
         <h1> Moji koktejli</h1>
       </div>
-        <% @cocktails.each do |cocktail| %>
+        <% @user.cocktails.each do |cocktail| %>
 
             <div class="card-product d-flex">
               <div class="card-img" style="background-image: url('<%= cl_image_path cocktail.photo.key %>');">
